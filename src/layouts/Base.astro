@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { title, description, path } = Astro.props;
+const links = [
+  { href: `${base}/`, label: 'Home', match: `${base}/` },
+  { href: `${base}/work/ai-governance-case-study/`, label: 'Case study', match: `${base}/work/ai-governance-case-study` },
+  { href: `${base}/work/rag-prototype/`, label: 'RAG prototype', match: `${base}/work/rag-prototype` },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site">
+      <div class="wrap">
+        <a class="brand" href={`${base}/`}>Iman Nasir <span>— applied AI governance</span></a>
+        <nav class="site" aria-label="Primary">
+          <ul>
+            {links.map((l) => (
+              <li><a href={l.href} aria-current={path.startsWith(l.match) && l.match !== `${base}/` ? 'page' : undefined}>{l.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+    <footer class="site">
+      <div class="wrap">
+        <p><strong>Illustrative case study.</strong> Lyra Cloud Services is a fictional company. The standards work is real; the organisation, systems, and figures are constructed to demonstrate applied practice. Nothing here is a certification claim or a legal opinion.</p>
+        <p>Built with Astro. <a href="https://github.com/iman-nasir/portfolio">Source</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const chapters = [
+  { num: '01', slug: '22989', title: 'Defining the systems before governing them', kicker: 'ISO/IEC 22989', blurb: 'One vocabulary, three system classes, nine lifecycle stages with named owners.' },
+  { num: '02', slug: '42005', title: 'Assessing impact before scaling', kicker: 'ISO/IEC 42005', blurb: 'A triage model, a completed assessment, and five release conditions on the support copilot.' },
+  { num: '03', slug: '42001', title: 'Operating governance as a system, not a project', kicker: 'ISO/IEC 42001', blurb: 'Scope, policy, six roles, risk treatment, gates, audit and management review.' },
+  { num: '04', slug: 'roadmap', title: 'Making it happen in 90 days', kicker: 'Implementation', blurb: 'Six blocks of fifteen days, with exit criteria and the decisions each one forces.' },
+];
+---
+<Base title="Iman Nasir — AI governance, transformation, and enablement" description="Four applied standards projects, one fictional company, and the decisions behind each." path={`${base}/`}>
+  <section class="hero">
+    <p class="kicker">Applied AI governance</p>
+    <h1>I help organizations move from AI ambition to governed, adopted, and responsible AI.</h1>
+    <p class="lead">Four applied standards projects, one fictional company, and the decisions behind each — from shared vocabulary to a 90-day operating plan.</p>
+    <div class="actions">
+      <a class="btn" href={`${base}/work/ai-governance-case-study/`}>Read the case study</a>
+      <a class="btn secondary" href={`${base}/work/rag-prototype/`}>See the working prototype</a>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <h2>The case study</h2>
+  <p><strong>Applied AI Governance at Lyra Cloud Services</strong> — a fictional 480-person B2B SaaS company with three AI systems: a customer-support copilot that drafts replies, an internal retrieval assistant for policies and documentation, and a demand-forecasting model. Across four applied projects I defined those systems, assessed their impact, designed and operated a management system, and sequenced a rollout.</p>
+  <p>The company is invented. The standards work is not: each chapter follows a real ISO/IEC standard clause by clause, and every conclusion is traceable to a document, a role, or a control.</p>
+
+  <ol class="chapters">
+    {chapters.map((c) => (
+      <li>
+        <a class="card-link" href={`${base}/work/ai-governance-case-study/${c.slug}/`}>
+          <span class="num">CHAPTER {c.num} · {c.kicker}</span>
+          <h3>{c.title}</h3>
+          <p>{c.blurb}</p>
+        </a>
+      </li>
+    ))}
+  </ol>
+
+  <hr class="rule" />
+
+  <h2>Why this shape</h2>
+  <p>Governance work is usually presented as a framework: a diagram, a maturity model, a list of clauses. That tells a reader what the standard says and nothing about what you would actually do. The alternative is one system followed all the way down — a single clause, to a control, to the evidence that proves it runs. That is what these four chapters do.</p>
+  <p>Each chapter is one standard applied to the same three systems, so the reader can watch the same organisation get more governable as the work progresses: terms first, then impact, then the operating system, then the plan to stand it up.</p>
+
+  <div class="callout">
+    <p><strong>What this is not.</strong> No client engagements are claimed here. The company, its systems, and its figures are constructed to demonstrate applied practice, and every metric is stated as a design target rather than a measured result.</p>
+  </div>
+
+  <h2>Working prototype</h2>
+  <p>The <a href={`${base}/work/rag-prototype/`}>RAG prototype</a> is a live implementation of the retrieval pattern described in the Atlas use-case card. It is deliberately small, deliberately labelled as a prototype, and included because governance advice from someone who has never shipped a retrieval system is worth less.</p>
+</Base>

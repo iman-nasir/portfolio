@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const chapters = [
+  { num: '01', slug: '22989', kicker: 'ISO/IEC 22989', title: 'Defining the systems before governing them', blurb: 'A controlled glossary of 14 terms, three system classifications, a nine-stage lifecycle with accountable owners, and use-case cards that state prohibited uses explicitly.' },
+  { num: '02', slug: '42005', kicker: 'ISO/IEC 42005', title: 'Assessing impact before scaling', blurb: 'A triage model that decides how much assessment a system needs, a completed impact assessment for the support copilot, and the conditions attached to its approval.' },
+  { num: '03', slug: '42001', kicker: 'ISO/IEC 42001', title: 'Operating governance as a system, not a project', blurb: 'The management system itself: scope, policy, six accountable roles, risk treatment, lifecycle gates, assurance, and improvement.' },
+  { num: '04', slug: 'roadmap', kicker: 'Implementation', title: 'Making it happen in 90 days', blurb: 'Six fifteen-day blocks, each with a deliverable and an exit criterion, plus the decisions that have to be made before day one.' },
+];
+---
+<Base title="Applied AI Governance at Lyra Cloud Services" description="Four applied ISO/IEC standards projects in one fictional company — definition, impact, management system, and rollout." path={`${base}/work/ai-governance-case-study/`}>
+  <p class="kicker">Case study</p>
+  <h1>Applied AI Governance at Lyra Cloud Services</h1>
+  <p class="lead">Lyra Cloud Services is a fictional 480-person B2B SaaS company running three AI systems. This is the governance work, in the order it has to be done.</p>
+
+  <p>Most governance portfolios show a framework. This one shows a <em>system</em> moving through four standards: define the vocabulary and boundaries (22989), assess impact before scaling (42005), run governance as an operating system (42001), then sequence the rollout. Each chapter is written to be read on its own, and they are ordered so that each depends on the one before it.</p>
+
+  <div class="callout">
+    <p><strong>How to read this.</strong> If you have ten minutes, read the role note at the top of each chapter and the final section. If you want to test the depth, start at Chapter 3 and follow any single control back to the clause that requires it.</p>
+  </div>
+
+  <ol class="chapters">
+    {chapters.map((c) => (
+      <li>
+        <a class="card-link" href={`${base}/work/ai-governance-case-study/${c.slug}/`}>
+          <span class="num">CHAPTER {c.num} · {c.kicker}</span>
+          <h3>{c.title}</h3>
+          <p>{c.blurb}</p>
+        </a>
+      </li>
+    ))}
+  </ol>
+
+  <h2>The company</h2>
+  <p>Lyra Cloud Services sells a B2B SaaS platform and runs three AI systems: <strong>Resolve</strong>, a customer-support copilot that drafts answers from approved documentation; <strong>Atlas</strong>, an internal retrieval-augmented assistant for policies and technical documentation; and <strong>Pulse</strong>, a demand-forecasting model built on aggregated product-usage data. Three systems, three different risk profiles, one governance problem.</p>
+
+  <p class="disclosure">Illustrative case study — Lyra Cloud Services is fictional; this is not a certification claim or legal opinion.</p>
+</Base>

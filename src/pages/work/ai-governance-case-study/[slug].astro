@@ -1,0 +1,39 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { chapters } from '../../../data/chapters';
+import Ch01 from '../../../content/ch01.md';
+import Ch02 from '../../../content/ch02.md';
+import Ch03 from '../../../content/ch03.md';
+import Ch04 from '../../../content/ch04.md';
+
+const bodies: Record<string, any> = { '22989': Ch01, '42005': Ch02, '42001': Ch03, roadmap: Ch04 };
+
+export function getStaticPaths() {
+  return chapters.map((c, i) => ({ params: { slug: c.slug }, props: { chapter: c, index: i } }));
+}
+
+const { chapter, index } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const prev = chapters[index - 1];
+const next = chapters[index + 1];
+const Content = bodies[chapter.slug];
+---
+<Base
+  title={`Chapter ${chapter.num} — ${chapter.title} | Applied AI Governance at Lyra Cloud Services`}
+  description={`${chapter.kicker}: ${chapter.role}`}
+  path={`${base}/work/ai-governance-case-study/${chapter.slug}/`}
+>
+  <p class="eyebrow"><a href={`${base}/work/ai-governance-case-study/`}>Applied AI Governance at Lyra Cloud Services</a></p>
+  <p class="kicker">Chapter {chapter.num} · {chapter.kicker}</p>
+  <h1>{chapter.title}</h1>
+  <div class="role">
+    <p class="eyebrow">My role in this chapter</p>
+    <p>{chapter.role}</p>
+  </div>
+  <Content />
+  <div class="chapter-nav">
+    <span>{prev ? <a href={`${base}/work/ai-governance-case-study/${prev.slug}/`}>← Chapter {prev.num}: {prev.title}</a> : <a href={`${base}/work/ai-governance-case-study/`}>← Case study overview</a>}</span>
+    <span>{next ? <a href={`${base}/work/ai-governance-case-study/${next.slug}/`}>Chapter {next.num}: {next.title} →</a> : <a href={`${base}/work/rag-prototype/`}>The RAG prototype →</a>}</span>
+  </div>
+  <p class="disclosure">Illustrative case study — Lyra Cloud Services is fictional; this is not a certification claim or legal opinion.</p>
+</Base>

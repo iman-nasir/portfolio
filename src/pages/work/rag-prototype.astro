@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const demo = 'https://iman-nasir.github.io/rag-poc/';
+---
+<Base title="RAG prototype — retrieval-augmented answers with citations" description="A small working retrieval-augmented prototype: the technical pattern behind the Atlas use-case card in the case study." path={`${base}/work/rag-prototype/`}>
+  <p class="kicker">Working prototype</p>
+  <h1>RAG prototype</h1>
+  <p class="lead">A small, working retrieval-augmented answering system — the pattern the Atlas use-case card describes, built so the governance story rests on something that actually runs.</p>
+
+  <div class="actions" style="display:flex; gap:1rem; flex-wrap:wrap; margin:1.75rem 0 2rem;">
+    <a class="btn" href={demo}>Open the live prototype</a>
+  </div>
+
+  <h2>What it does</h2>
+  <p>It takes a question, retrieves relevant passages from a fixed corpus of documents, and asks a language model to answer using only those passages. Every answer shows the sources it used, so a reader can check the claim rather than trust it.</p>
+
+  <h2>Why it is in this portfolio</h2>
+  <p>Chapter 2 sets five release conditions on a customer-facing copilot, including enforced human review, citations on every draft, and no training on customer content. Those conditions are easy to write and hard to mean. Building the underlying pattern makes the difference concrete: retrieval is the easy part; grounding, citation, evaluation, and the refusal behaviour are where the governance actually lives.</p>
+
+  <div class="callout warn">
+    <p><strong>Prototype — known limitations.</strong> The corpus is small and static. Retrieval quality is not benchmarked against a labelled set. There is no evaluation harness, no abuse testing, and no production monitoring. It exists to demonstrate the pattern, not to be deployed on real customer data.</p>
+  </div>
+
+  <h2>How it maps to the case study</h2>
+  <ul>
+    <li><strong>Atlas use-case card</strong> (Chapter 1) — intended use, users, prohibited uses, and the index restriction on HR, customer, and secrets-classified documents.</li>
+    <li><strong>Impact assessment</strong> (Chapter 2) — unsupported answers, stale corpus content, and automation bias are the three failure modes the prototype is designed to make visible.</li>
+    <li><strong>Lifecycle gates</strong> (Chapter 3) — a change to the corpus or the model is a material change, and would require reassessment before release.</li>
+  </ul>
+
+  <p><a href={`${base}/work/ai-governance-case-study/`}>← Back to the case study</a></p>
+
+  <p class="disclosure">Illustrative case study — Lyra Cloud Services is fictional; this is not a certification claim or legal opinion.</p>
+</Base>
